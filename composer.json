@@ -1,0 +1,46 @@
+{
+    "name": "nguyenanhung/mailer-sdk",
+    "type": "library",
+    "description": "Mailer SDK",
+    "keywords": [
+        "php",
+        "mail",
+        "mailer"
+    ],
+    "homepage": "https://github.com/nguyenanhung/mailer-sdk",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Nguyen An Hung",
+            "email": "dev@nguyenanhung.com",
+            "homepage": "https://nguyenanhung.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "nguyenanhung/30-seconds-of-php-code": "^1.0",
+        "swiftmailer/swiftmailer": "^5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=4.8 < 6.0",
+        "kint-php/kint": "^3.0",
+        "fzaninotto/faker": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "nguyenanhung\\MailerSDK\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MailerSDKTestsCase\\": "tests/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8080 -t public",
+        "test": "php vendor/bin/phpunit"
+    }
+}
