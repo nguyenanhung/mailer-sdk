@@ -9,8 +9,8 @@
 
 namespace nguyenanhung\MailerSDK;
 
-use nguyenanhung\MailerSDK\Interfaces\MailerInterface;
 use nguyenanhung\MailerSDK\Interfaces\ProjectInterface;
+use nguyenanhung\MailerSDK\Interfaces\MailerInterface;
 
 /**
  * Class Mailer
