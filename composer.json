@@ -18,10 +18,9 @@
         }
     ],
     "require": {
-        "php": ">=5.4",
         "ext-curl": "*",
         "ext-json": "*",
-        "nguyenanhung/30-seconds-of-php-code": "^1.0",
+        "nguyenanhung/helpers": "^1.0",
         "swiftmailer/swiftmailer": "^5.4"
     },
     "require-dev": {
