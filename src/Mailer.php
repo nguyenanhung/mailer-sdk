@@ -348,9 +348,7 @@ class Mailer implements ProjectInterface
                 $message = 'Class Swift_Message không tồn tại hoặc chưa được cài đặt!';
                 $result  = $message;
             } else {
-                $transport = (new Swift_SmtpTransport($this->config['hostname'], $this->config['port']))
-                    ->setUsername($this->config['username'])
-                    ->setPassword($this->config['password']);
+                $transport = (new Swift_SmtpTransport($this->config['hostname'], $this->config['port']))->setUsername($this->config['username'])->setPassword($this->config['password']);
                 $mailer    = new Swift_Mailer($transport);
                 $mail      = new Swift_Message();
                 if (!empty($this->from)) {

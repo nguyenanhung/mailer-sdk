@@ -25,6 +25,9 @@
     "autoload": {
         "psr-4": {
             "nguyenanhung\\MailerSDK\\": "src/"
-        }
+        },
+        "files": [
+            "helpers.php"
+        ]
     }
 }
