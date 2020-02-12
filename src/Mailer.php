@@ -9,8 +9,10 @@
 
 namespace nguyenanhung\MailerSDK;
 
-use nguyenanhung\MailerSDK\Interfaces\ProjectInterface;
-use nguyenanhung\MailerSDK\Interfaces\MailerInterface;
+use Exception;
+use Swift_SmtpTransport;
+use Swift_Mailer;
+use Swift_Message;
 
 /**
  * Class Mailer
@@ -19,8 +21,10 @@ use nguyenanhung\MailerSDK\Interfaces\MailerInterface;
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class Mailer implements ProjectInterface, MailerInterface
+class Mailer implements ProjectInterface
 {
+    const DEFAULT_CHARSET = 'utf-8';
+
     /** @var array|null Email Config */
     private $config;
     /** @var string Email Subject */
@@ -42,6 +46,9 @@ class Mailer implements ProjectInterface, MailerInterface
 
     /**
      * Mailer constructor.
+     *
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
      */
     public function __construct()
     {
@@ -74,7 +81,7 @@ class Mailer implements ProjectInterface, MailerInterface
      *
      * @return  $this
      */
-    public function setConfig($config = [])
+    public function setConfig($config = array())
     {
         $this->config = $config;
 
@@ -138,7 +145,7 @@ class Mailer implements ProjectInterface, MailerInterface
      *
      * @return  $this
      */
-    public function setFrom($from = [])
+    public function setFrom($from = array())
     {
         $this->from = $from;
 
@@ -170,7 +177,7 @@ class Mailer implements ProjectInterface, MailerInterface
      *
      * @return  $this
      */
-    public function setTo($to = [])
+    public function setTo($to = array())
     {
         $this->to = $to;
 
@@ -202,7 +209,7 @@ class Mailer implements ProjectInterface, MailerInterface
      *
      * @return  $this
      */
-    public function setCc($cc = [])
+    public function setCc($cc = array())
     {
         $this->cc = $cc;
 
@@ -234,7 +241,7 @@ class Mailer implements ProjectInterface, MailerInterface
      *
      * @return  $this
      */
-    public function setBcc($bcc = [])
+    public function setBcc($bcc = array())
     {
         $this->bcc = $bcc;
 
@@ -341,11 +348,11 @@ class Mailer implements ProjectInterface, MailerInterface
                 $message = 'Class Swift_Message không tồn tại hoặc chưa được cài đặt!';
                 $result  = $message;
             } else {
-                $transport = (new \Swift_SmtpTransport($this->config['hostname'], $this->config['port']))
+                $transport = (new Swift_SmtpTransport($this->config['hostname'], $this->config['port']))
                     ->setUsername($this->config['username'])
                     ->setPassword($this->config['password']);
-                $mailer    = new \Swift_Mailer($transport);
-                $mail      = new \Swift_Message();
+                $mailer    = new Swift_Mailer($transport);
+                $mail      = new Swift_Message();
                 if (!empty($this->from)) {
                     $mail->setFrom($this->from);
                 } else {
@@ -371,9 +378,12 @@ class Mailer implements ProjectInterface, MailerInterface
                 }
             }
         }
-        catch (\Exception $e) {
+        catch (Exception $e) {
             $message = 'Error File: ' . $e->getFile() . ' - Line: ' . $e->getLine() . ' - Code: ' . $e->getCode() . ' - Message: ' . $e->getMessage();
-            $result  = $message;
+            if (function_exists('log_message')) {
+                log_message('error', $message);
+            }
+            $result = $message;
         }
         $this->result = $result;
 

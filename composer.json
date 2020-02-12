@@ -20,26 +20,11 @@
     "require": {
         "ext-curl": "*",
         "ext-json": "*",
-        "nguyenanhung/helpers": "^1.0",
         "swiftmailer/swiftmailer": "^5.4"
-    },
-    "require-dev": {
-        "phpunit/phpunit": ">=4.8 < 6.0",
-        "kint-php/kint": "^3.0",
-        "fzaninotto/faker": "^1.8"
     },
     "autoload": {
         "psr-4": {
             "nguyenanhung\\MailerSDK\\": "src/"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "MailerSDKTestsCase\\": "tests/"
-        }
-    },
-    "scripts": {
-        "start": "php -S localhost:8080 -t public",
-        "test": "php vendor/bin/phpunit"
     }
 }
