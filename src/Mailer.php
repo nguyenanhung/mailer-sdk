@@ -379,7 +379,8 @@ class Mailer implements ProjectInterface
         catch (Exception $e) {
             $message = 'Error File: ' . $e->getFile() . ' - Line: ' . $e->getLine() . ' - Code: ' . $e->getCode() . ' - Message: ' . $e->getMessage();
             if (function_exists('log_message')) {
-                log_message('error', $message);
+                log_message('error', 'Error Message: ' . $e->getMessage());
+                log_message('error', 'Error Trace As String: ' . $e->getTraceAsString());
             }
             $result = $message;
         }

@@ -17,8 +17,8 @@ namespace nguyenanhung\MailerSDK;
  */
 interface ProjectInterface
 {
-    const VERSION       = '1.0.2';
-    const LAST_MODIFIED = '2020-02-11';
+    const VERSION       = '1.0.3';
+    const LAST_MODIFIED = '2020-08-13';
     const AUTHOR_NAME   = 'Hung Nguyen';
     const AUTHOR_EMAIL  = 'dev@nguyenanhung.com';
     const PROJECT_NAME  = 'Mailer SDK';

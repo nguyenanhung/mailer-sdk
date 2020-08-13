@@ -29,12 +29,9 @@ if (!function_exists('sendSmtpMailer')) {
     {
         $mail = new nguyenanhung\MailerSDK\Mailer();
         $mail->setConfig($config)
-             ->setContentType($contentType)
-             ->setSubject($subject)
-             ->setFrom($from)->setTo($to)->setCc($cc)
-             ->setBcc($bcc)
-             ->setBody($body)
-             ->send();
+             ->setContentType($contentType)->setSubject($subject)
+             ->setFrom($from)->setTo($to)->setCc($cc)->setBcc($bcc)
+             ->setBody($body)->send();
         $result = $mail->getResult();
 
         return $result;
