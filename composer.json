@@ -20,7 +20,7 @@
     "require": {
         "ext-curl": "*",
         "ext-json": "*",
-        "swiftmailer/swiftmailer": "^5.4"
+        "swiftmailer/swiftmailer": "^6.2"
     },
     "autoload": {
         "psr-4": {
