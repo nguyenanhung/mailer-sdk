@@ -21,7 +21,7 @@ use Swift_Message;
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class Mailer implements ProjectInterface
+class Mailer implements MailerInterface
 {
     const DEFAULT_CHARSET = 'utf-8';
 

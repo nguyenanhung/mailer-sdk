@@ -9,28 +9,28 @@
 namespace nguyenanhung\MailerSDK;
 
 /**
- * Interface ProjectInterface
+ * Interface MailerInterface
  *
  * @package   nguyenanhung\MailerSDK
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-interface ProjectInterface
+interface MailerInterface
 {
-    const VERSION       = '2.0.0';
-    const LAST_MODIFIED = '2020-10-02';
+    const VERSION       = '2.0.1';
+    const LAST_MODIFIED = '2021-01-21';
     const AUTHOR_NAME   = 'Hung Nguyen';
     const AUTHOR_EMAIL  = 'dev@nguyenanhung.com';
     const PROJECT_NAME  = 'Mailer SDK';
     const TIMEZONE      = 'Asia/Ho_Chi_Minh';
 
     /**
-     * Hàm lấy thông tin phiên bản Package
+     * Function getVersion
      *
-     * @author  : 713uk13m <dev@nguyenanhung.com>
-     * @time    : 10/13/18 15:12
-     *
-     * @return mixed|string Current Project Version, VD: 0.1.0
+     * @return mixed
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 01/21/2021 21:16
      */
     public function getVersion();
 }
