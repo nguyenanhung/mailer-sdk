@@ -21,8 +21,14 @@ use Swift_Message;
  * @author    713uk13m <dev@nguyenanhung.com>
  * @copyright 713uk13m <dev@nguyenanhung.com>
  */
-class Mailer implements MailerInterface
+class Mailer
 {
+    const VERSION         = '2.0.1';
+    const LAST_MODIFIED   = '2021-01-21';
+    const AUTHOR_NAME     = 'Hung Nguyen';
+    const AUTHOR_EMAIL    = 'dev@nguyenanhung.com';
+    const PROJECT_NAME    = 'Mailer SDK';
+    const TIMEZONE        = 'Asia/Ho_Chi_Minh';
     const DEFAULT_CHARSET = 'utf-8';
 
     /** @var array|null Email Config */
