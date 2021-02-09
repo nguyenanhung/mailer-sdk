@@ -32,8 +32,34 @@ if (!function_exists('sendSmtpMailer')) {
              ->setContentType($contentType)->setSubject($subject)
              ->setFrom($from)->setTo($to)->setCc($cc)->setBcc($bcc)
              ->setBody($body)->send();
-        $result = $mail->getResult();
 
-        return $result;
+        return $mail->getResult();
+    }
+}
+if (!function_exists('isEmail')) {
+    /**
+     * Function isEmail
+     *
+     * @param string $email
+     *
+     * @return bool
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 02/09/2021 56:16
+     */
+    function isEmail($email = '')
+    {
+        if (empty($email)) {
+            return FALSE;
+        }
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            // check Email
+            $mail = explode("@", $email);
+            if (!checkdnsrr($mail[1], "MX")) {
+                return TRUE;
+            }
+        }
+
+        return FALSE;
     }
 }
