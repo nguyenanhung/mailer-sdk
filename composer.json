@@ -27,7 +27,7 @@
             "nguyenanhung\\MailerSDK\\": "src/"
         },
         "files": [
-            "helpers.php"
+            "helpers/helpers.php"
         ]
     }
 }

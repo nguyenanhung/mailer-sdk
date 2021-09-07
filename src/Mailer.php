@@ -23,8 +23,8 @@ use Swift_Message;
  */
 class Mailer
 {
-    const VERSION         = '2.0.2';
-    const LAST_MODIFIED   = '2021-02-09';
+    const VERSION         = '3.0.0';
+    const LAST_MODIFIED   = '2021-09-07';
     const AUTHOR_NAME     = 'Hung Nguyen';
     const AUTHOR_EMAIL    = 'dev@nguyenanhung.com';
     const PROJECT_NAME    = 'Mailer SDK';
@@ -66,7 +66,7 @@ class Mailer
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 10/11/18 15:02
      *
-     * @return mixed|string Current Project Version
+     * @return string Current Project Version
      */
     public function getVersion()
     {
@@ -376,13 +376,12 @@ class Mailer
                 $mail->setTo($this->to);
                 $mail->setBody($this->body);
                 if (!$mailer->send($mail)) {
-                    $result = FALSE;
+                    $result = false;
                 } else {
-                    $result = TRUE;
+                    $result = true;
                 }
             }
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $message = 'Error File: ' . $e->getFile() . ' - Line: ' . $e->getLine() . ' - Code: ' . $e->getCode() . ' - Message: ' . $e->getMessage();
             if (function_exists('log_message')) {
                 log_message('error', 'Error Message: ' . $e->getMessage());
