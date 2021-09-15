@@ -1,8 +1,4 @@
-[![Latest Stable Version](https://poser.pugx.org/nguyenanhung/mailer-sdk/v/stable)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
-[![Total Downloads](https://poser.pugx.org/nguyenanhung/mailer-sdk/downloads)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
-[![Latest Unstable Version](https://poser.pugx.org/nguyenanhung/mailer-sdk/v/unstable)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
-[![composer.lock](https://poser.pugx.org/nguyenanhung/mailer-sdk/composerlock)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
-[![License](https://poser.pugx.org/nguyenanhung/mailer-sdk/license)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
+[![Latest Stable Version](http://poser.pugx.org/nguyenanhung/mailer-sdk/v)](https://packagist.org/packages/nguyenanhung/mailer-sdk) [![Total Downloads](http://poser.pugx.org/nguyenanhung/mailer-sdk/downloads)](https://packagist.org/packages/nguyenanhung/mailer-sdk) [![Latest Unstable Version](http://poser.pugx.org/nguyenanhung/mailer-sdk/v/unstable)](https://packagist.org/packages/nguyenanhung/mailer-sdk) [![License](http://poser.pugx.org/nguyenanhung/mailer-sdk/license)](https://packagist.org/packages/nguyenanhung/mailer-sdk) [![PHP Version Require](http://poser.pugx.org/nguyenanhung/mailer-sdk/require/php)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
 
 # Mailer Project
 
