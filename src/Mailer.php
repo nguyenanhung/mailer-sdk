@@ -23,8 +23,8 @@ use Swift_Message;
  */
 class Mailer
 {
-    const VERSION         = '3.0.1';
-    const LAST_MODIFIED   = '2021-09-15';
+    const VERSION         = '3.0.2';
+    const LAST_MODIFIED   = '2021-09-20';
     const AUTHOR_NAME     = 'Hung Nguyen';
     const AUTHOR_EMAIL    = 'dev@nguyenanhung.com';
     const PROJECT_NAME    = 'Mailer SDK';
@@ -33,20 +33,28 @@ class Mailer
 
     /** @var array|null Email Config */
     private $config;
+
     /** @var string Email Subject */
     private $subject;
-    /** @var array Array Email from */
+
+    /** @var array|string Array Email from */
     private $from;
-    /** @var array Array Email to */
+
+    /** @var array|string Array Email to */
     private $to;
-    /** @var array Array Email cc */
+
+    /** @var array|string Array Email cc */
     private $cc;
-    /** @var array Array Email bcc */
+
+    /** @var array|string Array Email bcc */
     private $bcc;
+
     /** @var string Email Content */
     private $body;
+
     /** @var string Email Content Type */
     private $contentType;
+
     /** @var null|bool|string Email Result */
     private $result;
 
@@ -68,7 +76,7 @@ class Mailer
      *
      * @return string Current Project Version
      */
-    public function getVersion()
+    public function getVersion(): string
     {
         return self::VERSION;
     }
@@ -87,7 +95,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setConfig($config = array())
+    public function setConfig(array $config = array()): Mailer
     {
         $this->config = $config;
 
@@ -119,7 +127,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setSubject($subject = '')
+    public function setSubject(string $subject = ''): Mailer
     {
         $this->subject = $subject;
 
@@ -134,7 +142,7 @@ class Mailer
      *
      * @return string
      */
-    public function getSubject()
+    public function getSubject(): string
     {
         return $this->subject;
     }
@@ -151,7 +159,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setFrom($from = array())
+    public function setFrom($from = array()): Mailer
     {
         $this->from = $from;
 
@@ -161,12 +169,12 @@ class Mailer
     /**
      * Function getFrom
      *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 11/27/18 11:47
-     *
      * @return array
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 09/20/2021 58:45
      */
-    public function getFrom()
+    public function getFrom(): array
     {
         return $this->from;
     }
@@ -183,7 +191,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setTo($to = array())
+    public function setTo($to = array()): Mailer
     {
         $this->to = $to;
 
@@ -198,7 +206,7 @@ class Mailer
      *
      * @return array
      */
-    public function getTo()
+    public function getTo(): array
     {
         return $this->to;
     }
@@ -215,7 +223,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setCc($cc = array())
+    public function setCc($cc = array()): Mailer
     {
         $this->cc = $cc;
 
@@ -230,7 +238,7 @@ class Mailer
      *
      * @return array
      */
-    public function getCc()
+    public function getCc(): array
     {
         return $this->cc;
     }
@@ -247,7 +255,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setBcc($bcc = array())
+    public function setBcc($bcc = array()): Mailer
     {
         $this->bcc = $bcc;
 
@@ -262,7 +270,7 @@ class Mailer
      *
      * @return array
      */
-    public function getBcc()
+    public function getBcc(): array
     {
         return $this->bcc;
     }
@@ -279,7 +287,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setBody($body = '')
+    public function setBody(string $body = ''): Mailer
     {
         $this->body = $body;
 
@@ -294,7 +302,7 @@ class Mailer
      *
      * @return string
      */
-    public function getBody()
+    public function getBody(): string
     {
         return $this->body;
     }
@@ -311,7 +319,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setContentType($contentType = '')
+    public function setContentType(string $contentType = ''): Mailer
     {
         $this->contentType = $contentType;
 
@@ -326,7 +334,7 @@ class Mailer
      *
      * @return string
      */
-    public function getContentType()
+    public function getContentType(): string
     {
         return $this->contentType;
     }
@@ -341,7 +349,7 @@ class Mailer
      *
      * @return $this
      */
-    public function send()
+    public function send(): Mailer
     {
         try {
             if (empty($this->to)) {
@@ -350,7 +358,7 @@ class Mailer
             } elseif (empty($this->body)) {
                 $message = 'Email không có nội dung';
                 $result  = $message;
-            } elseif (!class_exists('\Swift_Message')) {
+            } elseif (!class_exists(Swift_Message::class)) {
                 $message = 'Class Swift_Message không tồn tại hoặc chưa được cài đặt!';
                 $result  = $message;
             } else {

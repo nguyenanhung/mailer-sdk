@@ -11,21 +11,21 @@ if (!function_exists('sendSmtpMailer')) {
     /**
      * Function sendSmtpMailer
      *
-     * @param array  $config
-     * @param string $subject
-     * @param array  $from
-     * @param array  $to
-     * @param array  $cc
-     * @param array  $bcc
-     * @param string $body
-     * @param string $contentType
+     * @param array        $config
+     * @param string       $subject
+     * @param array|string $from
+     * @param array|string $to
+     * @param array|string $cc
+     * @param array|string $bcc
+     * @param string       $body
+     * @param string       $contentType
      *
      * @return bool|string|null
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 2/12/20 34:25
      */
-    function sendSmtpMailer($config = array(), $subject = '', $from = array(), $to = array(), $cc = array(), $bcc = array(), $body = '', $contentType = '')
+    function sendSmtpMailer(array $config = array(), string $subject = '', $from = array(), $to = array(), $cc = array(), $bcc = array(), string $body = '', string $contentType = '')
     {
         $mail = new nguyenanhung\MailerSDK\Mailer();
         $mail->setConfig($config)
@@ -47,19 +47,19 @@ if (!function_exists('isEmail')) {
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 02/09/2021 56:16
      */
-    function isEmail($email = '')
+    function isEmail(string $email = ''): bool
     {
         if (empty($email)) {
-            return FALSE;
+            return false;
         }
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             // check Email
             $mail = explode("@", $email);
-            if (!checkdnsrr($mail[1], "MX")) {
-                return TRUE;
+            if (!checkdnsrr($mail[1])) {
+                return true;
             }
         }
 
-        return FALSE;
+        return false;
     }
 }

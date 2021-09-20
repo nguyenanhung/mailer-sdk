@@ -30,5 +30,8 @@
         "files": [
             "helpers/helpers.php"
         ]
+    },
+    "suggest": {
+        "ext-intl": "Needed to support internationalized email addresses"
     }
 }
