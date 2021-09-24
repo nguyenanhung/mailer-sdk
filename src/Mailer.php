@@ -23,8 +23,8 @@ use Swift_Message;
  */
 class Mailer
 {
-    const VERSION         = '3.0.2';
-    const LAST_MODIFIED   = '2021-09-20';
+    const VERSION         = '3.0.3';
+    const LAST_MODIFIED   = '2021-09-24';
     const AUTHOR_NAME     = 'Hung Nguyen';
     const AUTHOR_EMAIL    = 'dev@nguyenanhung.com';
     const PROJECT_NAME    = 'Mailer SDK';
