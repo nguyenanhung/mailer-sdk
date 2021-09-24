@@ -76,7 +76,7 @@ class Mailer
      *
      * @return string Current Project Version
      */
-    public function getVersion(): string
+    public function getVersion()
     {
         return self::VERSION;
     }
@@ -95,7 +95,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setConfig(array $config = array()): Mailer
+    public function setConfig(array $config = array())
     {
         $this->config = $config;
 
@@ -127,7 +127,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setSubject(string $subject = ''): Mailer
+    public function setSubject($subject = '')
     {
         $this->subject = $subject;
 
@@ -142,7 +142,7 @@ class Mailer
      *
      * @return string
      */
-    public function getSubject(): string
+    public function getSubject()
     {
         return $this->subject;
     }
@@ -159,7 +159,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setFrom($from = array()): Mailer
+    public function setFrom($from = array())
     {
         $this->from = $from;
 
@@ -174,7 +174,7 @@ class Mailer
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/20/2021 58:45
      */
-    public function getFrom(): array
+    public function getFrom()
     {
         return $this->from;
     }
@@ -191,7 +191,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setTo($to = array()): Mailer
+    public function setTo($to = array())
     {
         $this->to = $to;
 
@@ -206,7 +206,7 @@ class Mailer
      *
      * @return array
      */
-    public function getTo(): array
+    public function getTo()
     {
         return $this->to;
     }
@@ -223,7 +223,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setCc($cc = array()): Mailer
+    public function setCc($cc = array())
     {
         $this->cc = $cc;
 
@@ -238,7 +238,7 @@ class Mailer
      *
      * @return array
      */
-    public function getCc(): array
+    public function getCc()
     {
         return $this->cc;
     }
@@ -255,7 +255,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setBcc($bcc = array()): Mailer
+    public function setBcc($bcc = array())
     {
         $this->bcc = $bcc;
 
@@ -270,7 +270,7 @@ class Mailer
      *
      * @return array
      */
-    public function getBcc(): array
+    public function getBcc()
     {
         return $this->bcc;
     }
@@ -287,7 +287,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setBody(string $body = ''): Mailer
+    public function setBody($body = '')
     {
         $this->body = $body;
 
@@ -302,7 +302,7 @@ class Mailer
      *
      * @return string
      */
-    public function getBody(): string
+    public function getBody()
     {
         return $this->body;
     }
@@ -319,7 +319,7 @@ class Mailer
      *
      * @return  $this
      */
-    public function setContentType(string $contentType = ''): Mailer
+    public function setContentType($contentType = '')
     {
         $this->contentType = $contentType;
 
@@ -334,7 +334,7 @@ class Mailer
      *
      * @return string
      */
-    public function getContentType(): string
+    public function getContentType()
     {
         return $this->contentType;
     }
@@ -349,7 +349,7 @@ class Mailer
      *
      * @return $this
      */
-    public function send(): Mailer
+    public function send()
     {
         try {
             if (empty($this->to)) {
@@ -358,7 +358,7 @@ class Mailer
             } elseif (empty($this->body)) {
                 $message = 'Email không có nội dung';
                 $result  = $message;
-            } elseif (!class_exists(Swift_Message::class)) {
+            } elseif (!class_exists('Swift_Message')) {
                 $message = 'Class Swift_Message không tồn tại hoặc chưa được cài đặt!';
                 $result  = $message;
             } else {

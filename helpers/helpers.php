@@ -25,7 +25,7 @@ if (!function_exists('sendSmtpMailer')) {
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 2/12/20 34:25
      */
-    function sendSmtpMailer(array $config = array(), string $subject = '', $from = array(), $to = array(), $cc = array(), $bcc = array(), string $body = '', string $contentType = '')
+    function sendSmtpMailer(array $config = array(), $subject = '', $from = array(), $to = array(), $cc = array(), $bcc = array(), $body = '', $contentType = '')
     {
         $mail = new nguyenanhung\MailerSDK\Mailer();
         $mail->setConfig($config)
@@ -47,7 +47,7 @@ if (!function_exists('isEmail')) {
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 02/09/2021 56:16
      */
-    function isEmail(string $email = ''): bool
+    function isEmail($email = '')
     {
         if (empty($email)) {
             return false;

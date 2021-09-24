@@ -6,7 +6,7 @@ Simple Class send Email use SMTP
 
 ## Version
 
-- [x] V1.x, V2.x support all PHP version `>=5.6`
+- [x] V1.x, V2.x support all PHP version `>=5.4`
 - [x] V3.x support all PHP version `>=7.0`
 
 ## Setup Guide
