@@ -10,9 +10,9 @@
 namespace nguyenanhung\MailerSDK;
 
 use Exception;
-use Swift_SmtpTransport;
-use Swift_Mailer;
-use Swift_Message;
+use Symfony\Component\Mailer\Transport as SymfonyMailerTransport;
+use Symfony\Component\Mailer\Mailer as SymfonyMailer;
+use Symfony\Component\Mime\Email as SymfonyMineEmail;
 
 /**
  * Class Mailer
@@ -23,8 +23,8 @@ use Swift_Message;
  */
 class Mailer
 {
-    const VERSION         = '3.0.3';
-    const LAST_MODIFIED   = '2021-09-24';
+    const VERSION         = '3.0.4';
+    const LAST_MODIFIED   = '2022-06-09';
     const AUTHOR_NAME     = 'Hung Nguyen';
     const AUTHOR_EMAIL    = 'dev@nguyenanhung.com';
     const PROJECT_NAME    = 'Mailer SDK';
@@ -339,16 +339,6 @@ class Mailer
         return $this->contentType;
     }
 
-    /**
-     * Function send
-     *
-     * Hàm gửi Email
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 10/11/18 15:36
-     *
-     * @return $this
-     */
     public function send(): Mailer
     {
         try {
@@ -358,13 +348,19 @@ class Mailer
             } elseif (empty($this->body)) {
                 $message = 'Email không có nội dung';
                 $result  = $message;
-            } elseif (!class_exists(Swift_Message::class)) {
+            } elseif (!class_exists(SymfonyMineEmail::class)) {
                 $message = 'Class Swift_Message không tồn tại hoặc chưa được cài đặt!';
                 $result  = $message;
             } else {
-                $transport = (new Swift_SmtpTransport($this->config['hostname'], $this->config['port']))->setUsername($this->config['username'])->setPassword($this->config['password']);
-                $mailer    = new Swift_Mailer($transport);
-                $mail      = new Swift_Message();
+                $transport = (new SymfonyMailerTransport(
+                    $this->config['hostname'],
+                    $this->config['port'])
+                )->setUsername($this->config['username'])
+                 ->setPassword($this->config['password']);
+                $mailer    = new SymfonyMailer($transport);
+
+
+                $mail      = new SymfonyMineEmail();
                 if (!empty($this->from)) {
                     $mail->setFrom($this->from);
                 } else {
