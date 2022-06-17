@@ -22,7 +22,7 @@ use PHPMailer\PHPMailer\Exception as PHPMailerException;
  */
 class Mailer
 {
-    const VERSION         = '3.0.4';
+    const VERSION         = '3.0.5';
     const LAST_MODIFIED   = '2022-06-17';
     const AUTHOR_NAME     = 'Hung Nguyen';
     const AUTHOR_EMAIL    = 'dev@nguyenanhung.com';
