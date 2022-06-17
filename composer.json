@@ -21,7 +21,9 @@
         "php": "^7.0 || ^8.0",
         "ext-curl": "*",
         "ext-json": "*",
-        "symfony/mailer": "^6.0 || ^5.0 || ^4.3"
+        "ext-intl": "*",
+        "ext-mbstrin": "*",
+        "phpmailer/phpmailer": "^6.5"
     },
     "autoload": {
         "psr-4": {
@@ -32,6 +34,12 @@
         ]
     },
     "suggest": {
-        "ext-intl": "Needed to support internationalized email addresses"
+        "ext-intl": "Needed to support internationalized email addresses",
+        "ext-mbstring": "Needed to send email in multibyte encoding charset or decode encoded addresses",
+        "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+        "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+        "psr/log": "For optional PSR-3 debug logging",
+        "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
+        "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
     }
 }
