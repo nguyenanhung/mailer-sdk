@@ -9,10 +9,9 @@
 
 namespace nguyenanhung\MailerSDK;
 
-use Exception;
-use Swift_SmtpTransport;
-use Swift_Mailer;
-use Swift_Message;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP as PHPMailerSMTP;
+use PHPMailer\PHPMailer\Exception as PHPMailerException;
 
 /**
  * Class Mailer
@@ -23,8 +22,8 @@ use Swift_Message;
  */
 class Mailer
 {
-    const VERSION         = '3.0.3';
-    const LAST_MODIFIED   = '2021-09-24';
+    const VERSION         = '2.1.1';
+    const LAST_MODIFIED   = '2022-06-17';
     const AUTHOR_NAME     = 'Hung Nguyen';
     const AUTHOR_EMAIL    = 'dev@nguyenanhung.com';
     const PROJECT_NAME    = 'Mailer SDK';
@@ -32,31 +31,34 @@ class Mailer
     const DEFAULT_CHARSET = 'utf-8';
 
     /** @var array|null Email Config */
-    private $config;
+    protected $config;
 
     /** @var string Email Subject */
-    private $subject;
+    protected $subject;
 
     /** @var array|string Array Email from */
-    private $from;
+    protected $from;
 
     /** @var array|string Array Email to */
-    private $to;
+    protected $to;
 
     /** @var array|string Array Email cc */
-    private $cc;
+    protected $cc;
 
     /** @var array|string Array Email bcc */
-    private $bcc;
+    protected $bcc;
+
+    /** @var array|string Add attachments */
+    protected $attachment;
 
     /** @var string Email Content */
-    private $body;
+    protected $body;
 
     /** @var string Email Content Type */
-    private $contentType;
+    protected $contentType;
 
     /** @var null|bool|string Email Result */
-    private $result;
+    protected $result;
 
     /**
      * Mailer constructor.
@@ -169,7 +171,7 @@ class Mailer
     /**
      * Function getFrom
      *
-     * @return array
+     * @return array|string
      * @author   : 713uk13m <dev@nguyenanhung.com>
      * @copyright: 713uk13m <dev@nguyenanhung.com>
      * @time     : 09/20/2021 58:45
@@ -204,7 +206,7 @@ class Mailer
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 11/27/18 11:47
      *
-     * @return array
+     * @return array|string
      */
     public function getTo()
     {
@@ -236,7 +238,7 @@ class Mailer
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 11/27/18 11:47
      *
-     * @return array
+     * @return array|string
      */
     public function getCc()
     {
@@ -268,7 +270,7 @@ class Mailer
      * @author: 713uk13m <dev@nguyenanhung.com>
      * @time  : 11/27/18 11:47
      *
-     * @return array
+     * @return array|string
      */
     public function getBcc()
     {
@@ -340,14 +342,40 @@ class Mailer
     }
 
     /**
+     *  Function setAttachment
+     *
+     * @param array|string $attachment
+     *
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     */
+    public function setAttachment($attachment)
+    {
+        $this->attachment = $attachment;
+
+        return $this;
+    }
+
+    /**
+     * Function Attachment
+     *
+     * @return array|string
+     *
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     */
+    public function getAttachment()
+    {
+        return $this->attachment;
+    }
+
+    /**
      * Function send
      *
-     * Hàm gửi Email
-     *
-     * @author: 713uk13m <dev@nguyenanhung.com>
-     * @time  : 10/11/18 15:36
-     *
      * @return $this
+     * @author   : 713uk13m <dev@nguyenanhung.com>
+     * @copyright: 713uk13m <dev@nguyenanhung.com>
+     * @time     : 17/06/2022 54:03
      */
     public function send()
     {
@@ -358,38 +386,65 @@ class Mailer
             } elseif (empty($this->body)) {
                 $message = 'Email không có nội dung';
                 $result  = $message;
-            } elseif (!class_exists('Swift_Message')) {
-                $message = 'Class Swift_Message không tồn tại hoặc chưa được cài đặt!';
+            } elseif (!class_exists('PHPMailer\PHPMailer\PHPMailer')) {
+                $message = 'Class PHPMailer không tồn tại hoặc chưa được cài đặt!';
                 $result  = $message;
             } else {
-                $transport = (new Swift_SmtpTransport($this->config['hostname'], $this->config['port']))->setUsername($this->config['username'])->setPassword($this->config['password']);
-                $mailer    = new Swift_Mailer($transport);
-                $mail      = new Swift_Message();
-                if (!empty($this->from)) {
-                    $mail->setFrom($this->from);
+                $mail = new PHPMailer(true);
+                //Server settings
+                $mail->SMTPDebug = PHPMailerSMTP::DEBUG_SERVER;             //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = $this->config['hostname'];              //Set the SMTP server to send through
+                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                $mail->Username   = $this->config['username'];              //SMTP username
+                $mail->Password   = $this->config['password'];              //SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = $this->config['port'];                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+                //Recipients
+                $mail->setFrom($this->from);
+                if (is_array($this->to)) {
+                    foreach ($this->to as $to) {
+                        $mail->addAddress($to);
+                    }
                 } else {
-                    $mail->setFrom($this->config['from']);
+                    $mail->addAddress($this->to);
                 }
                 if (!empty($this->cc)) {
-                    $mail->setCc($this->cc);
+                    if (is_array($this->cc)) {
+                        foreach ($this->cc as $cc) {
+                            $mail->addCC($cc);
+                        }
+                    } else {
+                        $mail->addCC($this->cc);
+                    }
                 }
                 if (!empty($this->bcc)) {
-                    $mail->setBcc($this->bcc);
+                    if (is_array($this->bcc)) {
+                        foreach ($this->bcc as $bcc) {
+                            $mail->addBCC($bcc);
+                        }
+                    } else {
+                        $mail->addBCC($this->bcc);
+                    }
                 }
-                if (!empty($this->contentType)) {
-                    $mail->setContentType($this->contentType);
+                //Attachments
+                if (!empty($this->attachment)) {
+                    if (is_array($this->attachment)) {
+                        foreach ($this->attachment as $attachment) {
+                            $mail->addAttachment($attachment);
+                        }
+                    } else {
+                        $mail->addAttachment($this->attachment);
+                    }
                 }
-                $mail->setCharset(self::DEFAULT_CHARSET);
-                $mail->setSubject($this->subject);
-                $mail->setTo($this->to);
-                $mail->setBody($this->body);
-                if (!$mailer->send($mail)) {
-                    $result = false;
-                } else {
-                    $result = true;
-                }
+                //Content
+                $mail->isHTML();                                  //Set email format to HTML
+                $mail->Subject = $this->subject;
+                $mail->Body    = $this->body;
+                $result        = $mail->send();
             }
-        } catch (Exception $e) {
+        } catch (PHPMailerException $e) {
             $message = 'Error File: ' . $e->getFile() . ' - Line: ' . $e->getLine() . ' - Code: ' . $e->getCode() . ' - Message: ' . $e->getMessage();
             if (function_exists('log_message')) {
                 log_message('error', 'Error Message: ' . $e->getMessage());

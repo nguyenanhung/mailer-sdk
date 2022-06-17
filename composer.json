@@ -21,7 +21,7 @@
         "php": ">=5.4",
         "ext-curl": "*",
         "ext-json": "*",
-        "swiftmailer/swiftmailer": "^5.4"
+        "phpmailer/phpmailer": "^6.5"
     },
     "autoload": {
         "psr-4": {
