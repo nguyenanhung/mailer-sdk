@@ -12,9 +12,8 @@ Simple Class send Email use SMTP
 ## Setup Guide
 
 ```php
-// Sample Config Email
+<?php
 require_once __DIR__ . '/vendor/autoload.php';
-
 
 $sampleConfig = [
     'hostname' => '',
@@ -35,6 +34,10 @@ $mailer->setFrom()
 $mailer->send();
 
 $result = $mailer->getResult();
+
+echo "<pre>";
+print_r($result);
+echo "</pre>";
 ```
 
 ## Contact
