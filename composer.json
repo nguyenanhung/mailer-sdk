@@ -1,7 +1,7 @@
 {
     "name": "nguyenanhung/mailer-sdk",
     "type": "library",
-    "description": "Mailer SDK",
+    "description": "Mailer SDK: Helper, Library and Quick Service - Basic, Simple and Lightweight",
     "keywords": [
         "php",
         "mail",

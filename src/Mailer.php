@@ -22,12 +22,12 @@ use PHPMailer\PHPMailer\Exception as PHPMailerException;
  */
 class Mailer
 {
-    const VERSION         = '3.0.5';
-    const LAST_MODIFIED   = '2022-06-17';
-    const AUTHOR_NAME     = 'Hung Nguyen';
-    const AUTHOR_EMAIL    = 'dev@nguyenanhung.com';
-    const PROJECT_NAME    = 'Mailer SDK';
-    const TIMEZONE        = 'Asia/Ho_Chi_Minh';
+    const VERSION = '3.1.0';
+    const LAST_MODIFIED = '2023-02-27';
+    const AUTHOR_NAME = 'Hung Nguyen';
+    const AUTHOR_EMAIL = 'dev@nguyenanhung.com';
+    const PROJECT_NAME = 'Mailer SDK';
+    const TIMEZONE = 'Asia/Ho_Chi_Minh';
     const DEFAULT_CHARSET = 'utf-8';
 
     /** @var array|null Email Config */
@@ -382,24 +382,24 @@ class Mailer
         try {
             if (empty($this->to)) {
                 $message = 'Không tìm thấy địa chỉ email gửi đến';
-                $result  = $message;
+                $result = $message;
             } elseif (empty($this->body)) {
                 $message = 'Email không có nội dung';
-                $result  = $message;
+                $result = $message;
             } elseif (!class_exists(PHPMailer::class)) {
                 $message = 'Class PHPMailer không tồn tại hoặc chưa được cài đặt!';
-                $result  = $message;
+                $result = $message;
             } else {
                 $mail = new PHPMailer(true);
                 //Server settings
-                $mail->SMTPDebug = PHPMailerSMTP::DEBUG_SERVER;             //Enable verbose debug output
-                $mail->isSMTP();                                            //Send using SMTP
-                $mail->Host       = $this->config['hostname'];              //Set the SMTP server to send through
-                $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                $mail->Username   = $this->config['username'];              //SMTP username
-                $mail->Password   = $this->config['password'];              //SMTP password
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-                $mail->Port       = $this->config['port'];                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->SMTPDebug = PHPMailerSMTP::DEBUG_SERVER;     // Enable verbose debug output
+                $mail->isSMTP();                                    // Send using SMTP
+                $mail->Host = $this->config['hostname'];            // Set the SMTP server to send through
+                $mail->SMTPAuth = true;                             // Enable SMTP authentication
+                $mail->Username = $this->config['username'];        // SMTP username
+                $mail->Password = $this->config['password'];        // SMTP password
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;    // Enable implicit TLS encryption
+                $mail->Port = $this->config['port'];                // TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
                 //Recipients
                 $mail->setFrom($this->from);
@@ -439,10 +439,10 @@ class Mailer
                     }
                 }
                 //Content
-                $mail->isHTML();                                  //Set email format to HTML
+                $mail->isHTML();    //Set email format to HTML
                 $mail->Subject = $this->subject;
-                $mail->Body    = $this->body;
-                $result        = $mail->send();
+                $mail->Body = $this->body;
+                $result = $mail->send();
             }
         } catch (PHPMailerException $e) {
             $message = 'Error File: ' . $e->getFile() . ' - Line: ' . $e->getLine() . ' - Code: ' . $e->getCode() . ' - Message: ' . $e->getMessage();
