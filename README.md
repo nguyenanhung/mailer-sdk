@@ -1,4 +1,9 @@
-[![Latest Stable Version](http://poser.pugx.org/nguyenanhung/mailer-sdk/v)](https://packagist.org/packages/nguyenanhung/mailer-sdk) [![Total Downloads](http://poser.pugx.org/nguyenanhung/mailer-sdk/downloads)](https://packagist.org/packages/nguyenanhung/mailer-sdk) [![Latest Unstable Version](http://poser.pugx.org/nguyenanhung/mailer-sdk/v/unstable)](https://packagist.org/packages/nguyenanhung/mailer-sdk) [![License](http://poser.pugx.org/nguyenanhung/mailer-sdk/license)](https://packagist.org/packages/nguyenanhung/mailer-sdk) [![PHP Version Require](http://poser.pugx.org/nguyenanhung/mailer-sdk/require/php)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
+[![Latest Stable Version](https://img.shields.io/packagist/v/nguyenanhung/mailer-sdk.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
+[![Total Downloads](https://img.shields.io/packagist/dt/nguyenanhung/mailer-sdk.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
+[![Daily Downloads](https://img.shields.io/packagist/dd/nguyenanhung/mailer-sdk.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/nguyenanhung/mailer-sdk.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
+[![License](https://img.shields.io/packagist/l/nguyenanhung/mailer-sdk.svg?style=flat-square)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
+[![PHP Version Require](https://img.shields.io/packagist/dependency-v/nguyenanhung/mailer-sdk/php)](https://packagist.org/packages/nguyenanhung/mailer-sdk)
 
 # Mailer Project
 
